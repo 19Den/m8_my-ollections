@@ -1,12 +1,12 @@
 public class MyHashMap {
     private class Node {
-        private int hash;
+
         private Object key;
         private Object value;
         private MyHashMap.Node next;
 
-        public Node(int hash, Object key, Object value, MyHashMap.Node next) {
-            this.hash = hash;
+        public Node(Object key, Object value, MyHashMap.Node next) {
+
             this.key = key;
             this.value = value;
             this.next = next;
@@ -22,14 +22,13 @@ public class MyHashMap {
     }
 
     private int hashIndex(Object key) {
-
         return (key == null) ? 0 : (key.hashCode()) % 16;
     }
 
     public void put(Object key, Object value) {
         int hashValue = hashIndex(key);
         if (table[hashValue] == null) {
-            table[hashValue] = new Node(key.hashCode(), key, value, null);
+            table[hashValue] = new Node(key, value, null);
             size++;
         } else {
             Node p = table[hashValue];
@@ -45,7 +44,7 @@ public class MyHashMap {
                 p = p.next;
             }
             if (!find) {
-                p = new Node(key.hashCode(), key, value, null);
+                p = new Node(key, value, null);
                 t.next = p;
             }
         }
