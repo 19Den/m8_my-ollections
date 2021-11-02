@@ -100,9 +100,7 @@ public class MyHashMap {
     public Object get(Object key) {
         int hashValue = hashIndex(key);
         for (Node node = table[hashValue]; node != null; node = node.next) {
-            if (node.key.equals(key)) {
-                return node.value;
-            }
+            return node.value;
         }
         return null;
     }

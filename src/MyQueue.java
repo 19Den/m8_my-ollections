@@ -18,7 +18,7 @@ public class MyQueue {
         first = new MyQueue.Node(null, null);
         MyQueue.Node current = first;
 
-        for (int i = 1; i < size; i++) {
+        for (int i = 0; i <= size; i++) {
             last = new MyQueue.Node(null, null);
             current.next = last;
             current = last;
@@ -33,13 +33,14 @@ public class MyQueue {
     }
 
     public void add(Object value) {
+
         if (last.next == finish) {
-            System.out.println("Конец списка");
-            return;
+            throw new IllegalStateException();
+        } else {
+            last.data = value;
+            last = last.next;
+            size++;
         }
-        last.data = value;
-        last = last.next;
-        size++;
     }
 
     public void printer() {
@@ -49,7 +50,6 @@ public class MyQueue {
             if (result != null) {
                 System.out.println(result.data);
                 result = result.next;
-                System.out.println("");
             }
         }
     }
@@ -81,7 +81,8 @@ public class MyQueue {
     }
 
     public Object poll() {
+        Object firstData = first.data;
         remove(0);
-        return first.data;
+        return firstData;
     }
 }
